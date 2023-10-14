@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/mcdogg17/hack_moretech">
-  <img src="https://bankreg.ru/bankr.ru/wp-content/uploads/2017/07/vtb-bank.png" alt="Logo" width="130" height="80">  
+  <img src="https://i.yapx.ru/WnDGH.png" alt="Logo" width="120" height="80">  
 </a>
 
 <h3 align="center">Backend</h3>
