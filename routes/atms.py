@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from controllers.controllers import AtmController
+from schemas.schema import Atm
 
 
 router = APIRouter(prefix="/atms", tags=["atms"])
@@ -20,7 +21,7 @@ def list_loads(atms: AtmController = Depends()):
 
 
 @router.post("/find_atm")
-def get_service(id: int, atms: AtmController = Depends()):
+def get_service(atm: Atm, atms: AtmController = Depends()):
     '''
     Функция для поиска объекта банкомата по id
     '''

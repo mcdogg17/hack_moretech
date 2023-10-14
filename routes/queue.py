@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from controllers.controllers import QueueItemController, QueueController, ServiceController
+from schemas.schema import QueueItemAdd, QueueItemGet, QueueItemDelete
 
 router = APIRouter(prefix="/queues", tags=["queues"])
 
@@ -16,7 +17,7 @@ def calculate_queue_load(queue):
 
 
 @router.post("/{salepoint_id}/items/")
-def add_queue_item(salepoint_id: int, service_id: int,
+def add_queue_item(queue_item: QueueItemAdd,
                    queue_items: QueueItemController = Depends(),
                    queues: QueueController = Depends(),
                    services: ServiceController = Depends()):
@@ -38,17 +39,17 @@ def add_queue_item(salepoint_id: int, service_id: int,
 
     id = res_queue["ids"][min_time_ind][1]
     print(list_queues[queue_id])
-    if list_queues[queue_id].items:       
+    if list_queues[queue_id].items:
         ticket_number = str(int(list_queues[queue_id].items[-1].ticket_number) + 1)
     else:
         ticket_number = '1'
-    
+
     item = queue_items.add(ticket_number, id, service_id)
     return item
 
 
 @router.get("/{salepoint_id}/")
-def get_queue_items(salepoint_id: int, queues: QueueController = Depends()):
+def get_queue_items(salepoint: QueueItemGet, queues: QueueController = Depends()):
     '''
     Функция для поиска объекта элемента очереди по salepoint_id
     '''
@@ -62,7 +63,7 @@ def get_queue_items(salepoint_id: int, queues: QueueController = Depends()):
 
 
 @router.delete("/{queue_id}/items/{ticket_number}/")
-def delete_queue_item(queue_id: int, ticket_number: str, queue_items: QueueItemController = Depends()):
+def delete_queue_item(queue_item: QueueItemDelete, queue_items: QueueItemController = Depends()):
     '''
     Функция для удаления объекта элемента очереди по queue_id, ticket_number
     '''

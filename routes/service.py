@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from controllers.controllers import ServiceController
+from schemas.schema import Service
 
 router = APIRouter(prefix="/services", tags=["services"])
 
@@ -19,7 +20,7 @@ def list_services(services: ServiceController = Depends()):
 
 
 @router.get("/find_service")
-def get_service(id: int, services: ServiceController = Depends()):
+def get_service(service: Service, services: ServiceController = Depends()):
     '''
     Функция для поиска объекта услуги по id
     '''
