@@ -1,6 +1,8 @@
 <br />
 <div align="center">
-  <a href="https://github.com/mcdogg17/hack_moretech"></a>
+  <a href="https://github.com/mcdogg17/hack_moretech">
+  <img src="https://bankreg.ru/bankr.ru/wp-content/uploads/2017/07/vtb-bank.png" alt="Logo" width="130" height="80">  
+</a>
 
 <h3 align="center">Backend</h3>
 
@@ -12,7 +14,8 @@
 </div>
 
 ## Other project repositories:
-* Пока пусто
+* <a href=https://github.com/DanonAno/HackVTBOpenMaps>iOS-приложение</a>
+* <a href=https://www.figma.com/file/6VFcVmFslHYfpFMRNC2PmX/Хакатон-ВТБ>Figma</a>
 
 
 ## About the project
@@ -20,7 +23,8 @@
 Сервис предоставляет возможности взаимодействия клиента с приложением.
 Также благодаря нашему приложению можно получить оптимальное по всем параметрам
 отделение банка. Учитываются такие параметры, как расстояние, время в пути, время в очереди.
-На стороне backend'a реализованы все необходимые функции для работы с базой данных. Для 
+На стороне backend'a реализованы все необходимые функции для работы с базой данных. Сервис позволяет
+пользователю записаться в электронную очередь в удобное отделение банка. Для 
 безопасности были написаны тесты системы по методам SAST, DAST, SQLMap.
 
 Сервис полностью задокументирован. Swagger-документация доступна по следуещему адресу: 
@@ -36,7 +40,6 @@
 * Pydantic
 * SQLAlchemy
 * PostgreSQL
-* Beautiful Soup 4
 * Docker
 * Docker Compose
 
@@ -51,11 +54,13 @@
 * Склонируйте репозиторий
 * Выполните следующие команды:
 
-```python3 filling/fill.py```
-
 ```docker-compose build```
 
 ```docker-compose up```
+
+```docker exec -it <your_container_name> bash```
+
+```python3 filling/fill.py```
 
 Приложение будет доступно на всех доступных адресах и порту 88. (`localhost:88` or `0.0.0.0:88`)
 
