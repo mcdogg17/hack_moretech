@@ -51,6 +51,8 @@
 * Склонируйте репозиторий
 * Выполните следующие команды:
 
+```python3 filling/fill.py```
+
 ```docker-compose build```
 
 ```docker-compose up```
