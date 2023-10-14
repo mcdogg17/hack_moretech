@@ -1,1 +1,1 @@
-# hack_moretech
+# hackathon
