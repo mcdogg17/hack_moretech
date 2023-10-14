@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from recsys.recommended_system import select_suitable
 from controllers.controllers import SalePointController, QueueController
-from routes.queue import get_queue_items
-from schemas.schema import SalePointFind, SalePointFindById, QueueCreate
+from schemas.schema import SalePointFind
 
 router = APIRouter(prefix="/salepoints", tags=["salepoints"])
 
@@ -41,7 +40,7 @@ def get_salepoint(salepoint: SalePointFind,
 
 
 @router.post("/find_salepoint_by_id")
-def get_salepoint_by_id(salepoint: SalePointFindById, salepoints: SalePointController = Depends()):
+def get_salepoint_by_id(id: int, salepoints: SalePointController = Depends()):
     '''
     Функция для поиска объекта отделения по id
     '''
@@ -54,17 +53,3 @@ def get_salepoint_by_id(salepoint: SalePointFindById, salepoints: SalePointContr
         )
 
     return db_salepoints
-
-
-@router.post("/{salepoint_id}/queues/")
-def create_queue(queue: QueueCreate,
-                 salepoints: SalePointController = Depends(),
-                 queues: QueueController = Depends()):
-    '''
-    Функция для создания объекта очереди по salepoint_id
-    '''
-    salepoint = salepoints.find(salepoint_id)
-    if salepoint is None:
-        raise HTTPException(status_code=404, detail="Отделение не найдены")
-    queue = queues.add(salepoint_id, opportunities)
-    return queue

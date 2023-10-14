@@ -1,14 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, Response
 from controllers.controllers import UserController
 from passlib.context import CryptContext
-from schemas.schema import UserLogin
 
 router = APIRouter(prefix="/user", tags=["user"])
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 @router.post("/login/")
-def login_user(user: UserLogin, users: UserController = Depends()):
+def login_user(username: str, password: str, users: UserController = Depends()):
     '''
     Функция для авторизации пользователя по логину и паролю
     '''

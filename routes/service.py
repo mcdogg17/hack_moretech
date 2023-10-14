@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
 from controllers.controllers import ServiceController
-from schemas.schema import Service
 
 router = APIRouter(prefix="/services", tags=["services"])
 
@@ -10,7 +9,7 @@ def list_services(services: ServiceController = Depends()):
     '''
     Функция для получения списка всех объектов услуг
     '''
-    db_services = services.all(skip=skip, max=max)
+    db_services = services.all()
     if not db_services:
         raise HTTPException(
             status_code=404,
@@ -20,7 +19,7 @@ def list_services(services: ServiceController = Depends()):
 
 
 @router.get("/find_service")
-def get_service(service: Service, services: ServiceController = Depends()):
+def get_service(id: int, services: ServiceController = Depends()):
     '''
     Функция для поиска объекта услуги по id
     '''

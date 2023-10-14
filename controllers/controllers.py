@@ -71,9 +71,9 @@ class ServiceController:
     def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
-    def all(self, skip: int = 0, max: int = 100) -> List[Service]:
+    def all(self) -> List[Service]:
         query = self.db.query(Service)
-        return query.offset(skip).limit(max).all()
+        return query.all()
 
     def find(self, id: id) -> Service:
         query = self.db.query(Service)
